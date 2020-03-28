@@ -24,7 +24,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mosquitto
+  name: mosquitto-mqtt
 spec:
   ports:
   - port: 1883 
@@ -36,7 +36,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mosquitto
+  name: mosquitto-http
 spec:
   ports:
   - port: 9001

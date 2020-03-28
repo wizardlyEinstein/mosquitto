@@ -31,10 +31,6 @@ spec:
     targetPort: 1883
     name: mqtt
     protocol: TCP
-  - port: 9001
-    targetPort: 9001
-    name: http 
-    protocol: TCP
   type: LoadBalancer
   selector:
     app: mosquitto

@@ -1,0 +1,9 @@
+namespace: mosquitto 
+
+images:
+- name: eclipse-mosquitto
+  newTag: 1.6.9 
+
+resources:
+- manifest.yaml
+

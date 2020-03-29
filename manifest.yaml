@@ -17,9 +17,18 @@ spec:
       containers:
       - name: mosquitto
         image: eclipse-mosquitto
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - name: mosquitto
+          mountPath: /mosquitto/config/mosquitto.conf
+          subPath: mosquitto.conf
         ports:
         - containerPort: 1883
         - containerPort: 9001 
+      volumes:
+      - name: mosquitto
+        configMap:
+          name: mosquitto
 ---
 apiVersion: v1
 kind: Service
@@ -30,6 +39,10 @@ spec:
   - port: 1883
     targetPort: 1883
     name: mqtt
+    protocol: TCP
+  - port: 9001
+    targetPort: 9001
+    name: mqtt-websocket
     protocol: TCP
   type: LoadBalancer
   selector:

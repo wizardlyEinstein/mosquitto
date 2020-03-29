@@ -7,3 +7,7 @@ images:
 resources:
 - manifest.yaml
 
+configMapGenerator:
+- name: mosquitto
+  files:
+  - configs/mosquitto.conf

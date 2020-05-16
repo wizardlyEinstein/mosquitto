@@ -19,16 +19,21 @@ spec:
         image: eclipse-mosquitto
         imagePullPolicy: IfNotPresent
         volumeMounts:
-        - name: mosquitto
+        - name: config
           mountPath: /mosquitto/config/mosquitto.conf
           subPath: mosquitto.conf
+        - name: data
+          mountPath: /mosquitto/data/
         ports:
         - containerPort: 1883
         - containerPort: 9001 
       volumes:
-      - name: mosquitto
+      - name: config
         configMap:
-          name: mosquitto
+          name: config
+      - name: data
+        persistentVolumeClaim:
+          claimName: data
 ---
 apiVersion: v1
 kind: Service
@@ -47,3 +52,17 @@ spec:
   type: LoadBalancer
   selector:
     app: mosquitto
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: data
+  labels:
+    app: mosquitto
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: local-path
+  resources:
+    requests:
+      storage: 1Gi

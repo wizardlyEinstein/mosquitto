@@ -8,6 +8,6 @@ resources:
 - manifest.yaml
 
 configMapGenerator:
-- name: mosquitto
+- name: config
   files:
   - configs/mosquitto.conf

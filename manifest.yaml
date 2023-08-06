@@ -32,8 +32,9 @@ spec:
         configMap:
           name: config
       - name: data
-        persistentVolumeClaim:
-          claimName: data
+        hostPath:
+          path: /ssd/k3s/mosquitto/
+          type: Directory
 ---
 apiVersion: v1
 kind: Service
@@ -52,17 +53,3 @@ spec:
   type: LoadBalancer
   selector:
     app: mosquitto
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: data
-  labels:
-    app: mosquitto
-spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: local-path
-  resources:
-    requests:
-      storage: 1Gi

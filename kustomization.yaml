@@ -2,7 +2,7 @@ namespace: mosquitto
 
 images:
 - name: eclipse-mosquitto
-  newTag: 1.6.15 
+  newTag: 2.0.21 
 
 resources:
 - manifest.yaml

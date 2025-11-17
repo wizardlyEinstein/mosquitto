@@ -33,7 +33,7 @@ spec:
           name: config
       - name: data
         hostPath:
-          path: /ssd/k3s/mosquitto/
+          path: /hdd/k3s/mosquitto/
           type: Directory
 ---
 apiVersion: v1
